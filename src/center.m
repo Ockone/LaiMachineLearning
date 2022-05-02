@@ -1,6 +1,6 @@
 function [mean_face, center_data] = center(source_data)
 %样本数据中心化
-%   source_data     m×n矩阵    m个n维样本
+%   source_data     m×n矩阵    n个m维样本，因为每一列维一个样本
 %   center_data     m×n矩阵   中心化后样本
 
     center_data = zeros(size(source_data));  % 初始化目标矩阵，与源矩阵形状相同
