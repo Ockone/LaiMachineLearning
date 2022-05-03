@@ -43,8 +43,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class = 0:39;
 [ W, D] = LDA( train_data', train_label, class );
-% eig方法会把特征值排好序，取前40即可
-U = W(:,1:40);
+[~,I]    = sort(diag(D),'descend');
+U = W(:,I(1:40));
 
 % 展示一下前20个特征脸
 % 展示部分图片
@@ -68,7 +68,7 @@ fig = display_face(sample_face, img_size);
 title('原图');
 count = 5;
 for i = 5:5:40
-    eig_faces = W(:, 1:i);              % 取前i个特征向量
+    eig_faces = U(:, 1:i);              % 取前i个特征向量
     Y = eig_faces' * sample_face;       % 投影 为i维向量
     Z = eig_faces * Y;                  % 重构为原图片尺寸
     subplot(3, 4, count);
